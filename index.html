@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en" dir="ltr">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Liu zhixin">
+        <meta name="description" content="Liu zhixin; web developer">
+        <meta name="keywords" content="web developer, front-end, html, css, javascript, react, sql">
+        <title>Shape Factory</title>
+
+        <!-- using icons from fontawesome -->
+        <script src="https://kit.fontawesome.com/3f60ee6457.js" crossorigin="anonymous"></script>
+
+        <link rel="stylesheet" href="./assets/style/reset.css">
+        <link rel="stylesheet" href="./assets/style/index.css">
+        <script src="./assets/script/index.js" defer></script>
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <div class="center">
+                    <div class="title"><h1>Shape factory</h1></div>
+                      <div class="set-shape">
+                        <select name="shape" id="shape">
+                            <option value="Circle" selected>Circle</option>
+                            <option value="Square">Square</option>
+                        </select>
+                        <select name="color" id="color">
+                            <option value="#09f" selected>Blue</option>
+                            <option value="#f90">Orange</option>
+                            <option value="#f09">Pink</option>
+                            <option value="#90f">Purple</option>                           
+                            <option value="#9f0">Green</option>
+                        </select>
+                        <input type="button" id="btnCreate" value="Create">
+                      </div>
+                      <div class="factory"></div>
+                      <div class="msg"></div>
+                </div>
+            </div>  
+        </main>
+    </body>
+</html>
