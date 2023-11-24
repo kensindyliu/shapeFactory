@@ -66,7 +66,7 @@ class Shape{
     }
 
     get color(){
-        return this.getColorName(this._color);
+        return this._color;
     }
 
     set shape(shape){
@@ -79,8 +79,9 @@ class Shape{
 
     getInfo(){
         const info = {
-            shape: this.shape,
-            color: this._color
+            shape: this._shape,
+            color: this._color,
+            colorOfName: this.getColorName(this._color)
         };
         return info;
     }
@@ -114,7 +115,7 @@ function createShape(shape1){
     const newShape = create('div');
     let id = shapeArray.length;
     const parent = selectById('block' + id);
-    let info = shape1.getInfo(id);
+    const info = shape1.getInfo(id);
     newShape.classList.add('block');
     if(info.shape == 'Circle') {
         newShape.classList.add('circle');
@@ -124,6 +125,6 @@ function createShape(shape1){
     parent.append(newShape);
     onEvent('click', newShape, function(){
         const myobj = shapeArray[id];
-        msg.innerHTML = `Unit${id}: ${info.shape}  ${shape1.color}`;
+        msg.innerHTML = `Unit${id}: ${info.shape}  ${info.colorOfName}`;
     });
 }
