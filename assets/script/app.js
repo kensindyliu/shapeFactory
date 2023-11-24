@@ -66,8 +66,28 @@ class Shape{
     }
 
     get color(){
-        let color1 = this._color;
-        switch (this._color) {
+        return this.getColorName(this._color);
+    }
+
+    set shape(shape){
+        this._shape = shape;
+    }
+
+    get shape(){
+        return this._shape;
+    }
+
+    getInfo(){
+        const info = {
+            shape: this.shape,
+            color: this._color
+        };
+        return info;
+    }
+    
+    getColorName(color) {
+        let color1 = color;
+        switch (color1) {
             case "#09f":
                 color1 = 'Blue';
                 break;
@@ -86,36 +106,25 @@ class Shape{
         }
         return color1;
     }
-
-    set shape(shape){
-        this._shape = shape;
-    }
-
-    get shape(){
-        return this._shape;
-    }
-
-    getInfo(){
-        return [this._color, this.shape];
-    }
-
 }
+
+
 
 
 function createShape(shape1){
     const newShape = create('div');
     let id = shapeArray.length;
     const parent = selectById('block' + id);
-    let obj = shape1.getInfo(id);
+    let info = shape1.getInfo(id);
     newShape.classList.add('block');
-    if(obj[1] == 'Circle') {
+    if(info.shape == 'Circle') {
         newShape.classList.add('circle');
     }
-    newShape.style.background = obj[0];
+    newShape.style.background = info.color;
     newShape.id = id;
     parent.append(newShape);
     onEvent('click', newShape, function(){
         const myobj = shapeArray[id];
-        msg.innerHTML = `Unit${id}: ${shape1.shape}  ${shape1.color}`;
+        msg.innerHTML = `Unit${id}: ${info.shape}  ${shape1.color}`;
     });
 }
