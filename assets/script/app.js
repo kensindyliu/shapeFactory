@@ -86,25 +86,24 @@ class Shape{
     }
     
     getColorName(color) {
-        let color1 = color;
-        switch (color1) {
+        switch (color) {
             case "#09f":
-                color1 = 'Blue';
+                color = 'Blue';
                 break;
             case "#f90":
-                color1 = 'Orange';
+                color = 'Orange';
                 break;
             case "#f09":
-                color1 = 'Pink';
+                color = 'Pink';
                 break;
             case "#90f":
-                color1 = 'Purple';
+                color = 'Purple';
                 break;
             case "#9f0":
-                color1 = 'Green';
+                color = 'Green';
                 break;
         }
-        return color1;
+        return color;
     }
 }
 
