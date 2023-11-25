@@ -25,7 +25,6 @@ const msg = select('.msg');
 
 const factory = select('.factory');
 
-// initBoard();
 let shapeArray = [];
 onEvent('click', btnCreate, function(){
     if(shapeArray.length >= 24){
