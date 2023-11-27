@@ -26,15 +26,25 @@ const msg = select('.msg');
 const factory = select('.factory');
 
 let shapeArray = [];
+
+const shapeSelect = selectById('shape');
+shapeSelect.options[0].selected = true;
+
+const colorSelect = selectById('color');
+colorSelect.options[0].selected = true;
+
 onEvent('click', btnCreate, function(){
+    
     if(shapeArray.length >= 24){
         msg.innerHTML = 'Can not add more shape!';
     }
-    if (selColor.value != '' && selShape.value !='' && shapeArray.length < 24){
+    if (selColor.value.length != 0 && selShape.value.length != 0 && shapeArray.length < 24){
         const shape = new Shape(selColor.value, selShape.value);
         msg.innerHTML = '';
         shapeArray.push(shape);
         createShape(shape);
+    } else if(selColor.value.length == 0 || selShape.value.length == 0) {
+        msg.innerHTML = 'Please select a shape or a color!';
     }
 })
 
@@ -70,26 +80,26 @@ class Shape{
         return info;
     }
     
-    getColorName(color) {
-        switch (color) {
-            case "#09f":
-                color = 'Blue';
-                break;
-            case "#f90":
-                color = 'Orange';
-                break;
-            case "#f09":
-                color = 'Pink';
-                break;
-            case "#90f":
-                color = 'Purple';
-                break;
-            case "#9f0":
-                color = 'Green';
-                break;
-        }
-        return color;
-    }
+    // getColorName(color) {
+    //     switch (color) {
+    //         case "#09f":
+    //             color = 'Blue';
+    //             break;
+    //         case "#f90":
+    //             color = 'Orange';
+    //             break;
+    //         case "#f09":
+    //             color = 'Pink';
+    //             break;
+    //         case "#90f":
+    //             color = 'Purple';
+    //             break;
+    //         case "#9f0":
+    //             color = 'Green';
+    //             break;
+    //     }
+    //     return color;
+    // }
 }
 
 function createShape(shape1){
@@ -102,9 +112,20 @@ function createShape(shape1){
     }
     newShape.style.background = info.color;
     newShape.id = id;
+    const selectedColorOption = selColor.options[selColor.selectedIndex];
+    let selectedColorText = selectedColorOption.textContent;
+
+    const selectedShapOption = shapeSelect.options[shapeSelect.selectedIndex];
+    let selectedShapeText = selectedShapOption.textContent;
+
+    newShape.setAttribute("data-color", selectedColorText);
+    newShape.setAttribute("data-Shape", selectedShapeText);
     factory.append(newShape);
     onEvent('click', newShape, function(){
-        const myobj = shapeArray[id];
-        msg.innerHTML = `Unit${id}: ${info.shape}  ${info.colorOfName}`;
+        //const myobj = shapeArray[id];
+        // msg.innerHTML = `Unit${id}: ${info.shape}  ${info.colorOfName}`;
+        let colorName = newShape.getAttribute("data-color");
+        let shapeName =  newShape.getAttribute("data-Shape");
+        msg.innerHTML = `Unit${id}: ${newShape.id} ${shapeName} ${colorName}`
     });
 }
